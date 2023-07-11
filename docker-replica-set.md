@@ -1,0 +1,14 @@
+- Build image mongo
+- Create docker network
+   - Run cmd: docker network create mongo-network
+- Create install container:
+   - Run cmd: docker run -d --name mongo1 --net mongo-network mongo:4.4 --replSet myReplicaSet
+   - Run cmd: docker run -d --name mongo2 --net mongo-network mongo:4.4 --replSet myReplicaSet
+- Access container:
+   - Run cmd: docker exec -it mongo1 mongo
+- Initiate Replica Set:
+   - Run cmd: rs.initiate()
+- Add instance MongoDB into Replica Set
+   - Run cmd: rs.add("<host2>:<port2>") -> rs.add("mongo2:27017")
+- Check status Replica Set:
+   - Run cmd: rs.status()
